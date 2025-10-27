@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Pasos Miyuki</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; 
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999; 
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 1000;
+            max-height: 80vh; 
+            overflow-y: auto; 
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #4a5568; 
+        }
+        .close-button:hover {
+            color: #2d3748; 
+        }
+
+        .tooltip-box {
+            position: absolute;
+            background-color: #ffffff;
+            color: #4a5568;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            max-width: 280px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 99; 
+            pointer-events: none; 
+            opacity: 0; 
+            transition: opacity 0.2s ease-in-out; 
+            border: 1px solid #e2e8f0;
+        }
+
+        .tooltip-box.bottom::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent #ffffff transparent; 
+        }
+
+        .tooltip-box.top::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: #ffffff transparent transparent transparent; 
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-6 rounded-lg shadow-xl max-w-lg w-full text-center flex flex-col items-center">
+        
+        <div id="initial-instructions" class="mb-8 text-left text-gray-700 w-full">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-4">Paso a paso para tejer VIRGEN en Pepa Miyuki</h2>
+            
+            <p class="mb-4">
+                ¡Bienvenida/o a esta guía detallada para crear tu pieza de Miyuki! Sigue los pasos cuidadosamente para lograr un resultado hermoso.
+            </p>
+
+            <h3 class="text-xl font-semibold text-indigo-700 mb-2">Glosario de Letras</h3>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><span class="font-bold">D</span> = Dorado</li>
+                <li><span class="font-bold">N</span> = Negro</li>
+                <li><span class="font-bold">P</span> = Piel</li>
+                <li><span class="font-bold">V</span> = Verde</li>
+                <li><span class="font-bold">C</span> = Café</li>
+                <li><span class="font-bold">R</span> = Rojo</li>
+                <li><span class="font-bold">M</span> = ¿Marrón? / ¿Mostaza? / Otro? (Por favor, define 'M'!)</li> 
+            </ul>
+
+            <h3 class="text-xl font-semibold text-indigo-700 mb-2">Explicación de Reducción</h3>
+            <p class="mb-2">
+                Hay dos tipos de reducción:
+            </p>
+            <p class="mb-4">
+                1. Cuando decimos agregar una pepa y luego poner el hilo por la misma, notarás que al poner la última pepa queda un espacio vacío. Meterás la aguja por la pepa que queda justo encima donde te quedó el hilo y agregarás la pepa indicada como si fueras a hacer una hilera. Quedarás con el hilo justo debajo de la última hilera. Meterás la aguja hacia donde está la pepa en la pepa justo detrás donde te queda el hilo. Si tienes el hilo apuntando hacia arriba justo a la derecha habrán dos pepas: la que acabas de poner y una detrás de la que pusiste. Meterás la aguja hacia arriba por la anterior a la que pusiste y por último el hilo por la pepa que metiste.
+            </p>
+            <p class="mb-4" id="long-explanation-type-2">
+                2. Después de poner la última pepa antes de una reducción, formas una especie de escalón y el hilo queda en la última pepa de la fila anterior. Meterás el hilo justo en la pepa anterior por la que salió el hilo. Ahora verás la penúltima columna. Desde la pepa que metiste hacia lo que ya está terminado habrán 3 pepas contando la que pusiste. Meterás la aguja en dirección a donde sale el hilo en la tercera, devolverás por la segunda en dirección contraria y por último metes la aguja en la que pusiste.
+            </p>
+            <hr class="my-6 border-t-2 border-gray-300">
+        </div>
+
+        <div id="left-branch-intro" class="hidden mb-8 text-left text-gray-700 w-full">
+            <h2 class="text-2xl font-bold text-red-700 mb-4">¡Estás tejiendo la CABEZA de la VIRGEN!</h2>
+            <p class="mb-4">
+                Sigue estos pasos con atención para completar la sección de la cabeza. Cuando termines, usa el botón "Inicio / Derecha" para volver al Paso 1 principal.
+            </p>
+            <hr class="my-6 border-t-2 border-gray-300">
+        </div>
+
+        <div id="step-display" class="text-3xl font-bold text-indigo-700 mb-6">Paso 1</div>
+
+        <img id="step-image" src="images/1.jpg" alt="Imagen del paso actual" class="w-[245px] h-auto rounded-lg shadow-md mb-8 mx-auto">
+
+        <div id="pattern-display" class="text-xl text-gray-800 mb-8 px-4 leading-relaxed">
+            Prepara tu espacio de trabajo.
+        </div>
+
+        <div class="flex justify-center space-x-2 w-full mt-auto py-4">
+            <button id="left-button" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                Inicio / Izq.
+            </button>
+            <button id="prev-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                Anterior
+            </button>
+            <button id="next-button" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                Siguiente
+            </button>
+        </div>
+    </div>
+
+    <div id="reduction-type2-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-modal-button">&times;</span>
+            <h3 class="text-2xl font-bold text-indigo-800 mb-4">Explicación de Reducción Tipo 2</h3>
+            <p class="text-gray-800 text-lg">
+                Después de poner la última pepa antes de una reducción, formas una especie de escalón y el hilo queda en la última pepa de la fila anterior. Meterás el hilo justo en la pepa anterior por la que salió el hilo. Ahora verás la penúltima columna. Desde la pepa que metiste hacia lo que ya está terminado habrán 3 pepas contando la que pusiste. Meterás la aguja en dirección a donde sale el hilo en la tercera, devolverás por la segunda en dirección contraria y por último metes la aguja en la que pusiste.
+            </p>
+        </div>
+    </div>
+    <div id="reduction-type2-tooltip" class="tooltip-box hidden">
+        Después de poner la última pepa antes de una reducción, el hilo queda en la pepa de la fila anterior. Se mete el hilo por la pepa anterior a la que salió, luego por la tercera desde la pepa puesta, se devuelve por la segunda en dirección contraria y se mete por la que pusiste.
+    </div>
+    <script>
+        // Array de pasos para la "rama derecha" (la principal)
+        const steps = [
+            {
+                pattern: "Prepara tu espacio de trabajo.",
+                imageUrl: "images/1.jpg"
+            },
+            {
+                pattern: "D 2N 10P 1N 1D 4V",
+                imageUrl: "images/1.jpg"
+            },
+            {
+                pattern: "D N 5P N",
+                imageUrl: "images/2.jpg"
+            },
+            {
+                pattern: "D 3P 2C P N V",
+                imageUrl: "images/3.jpg"
+            },
+            {
+                pattern: "V D N 3C P C N",
+                imageUrl: "images/4.jpg"
+            },
+            {
+                pattern: "D 2C 4P N V",
+                imageUrl: "images/5.jpg"
+            },
+            {
+                pattern: "V D 6P N",
+                imageUrl: "images/6.jpg"
+            },
+            {
+                pattern: "D 3P 2N P N V",
+                imageUrl: "images/7.jpg"
+            },
+            {
+                pattern: "V D 2P N 3P N",
+                imageUrl: "images/8.jpg"
+            },
+            {
+                pattern: "D 2N 4P N V",
+                imageUrl: "images/9.jpg"
+            },
+            {
+                pattern: "V D 4P C 2N",
+                imageUrl: "images/10.jpg"
+            },
+            {
+                pattern: "D C 5P N V",
+                imageUrl: "images/11.jpg"
+            },
+            {
+                pattern: "2D 4P C P N",
+                imageUrl: "images/12.jpg"
+            },
+            {
+                pattern: "D C P C 3P N V",
+                imageUrl: "images/13.jpg"
+            },
+            {
+                pattern: "V D 5P C N",
+                imageUrl: "images/14.jpg"
+            },
+            {
+                pattern: "D N 5P N V",
+                imageUrl: "images/15.jpg"
+            },
+            {
+                pattern: "V D 2P 2C P C D",
+                imageUrl: "images/16.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/17.jpg" 
+            },
+            {
+                pattern: "N M P M P M N V",
+                imageUrl: "images/19.jpg"
+            },
+            {
+                pattern: "V D P M 2P M N",
+                imageUrl: "images/20.jpg"
+            },
+            {
+                pattern: "Notaras que quedas justo en una pepa negra, debes subir a la dorada y agregaras una dorada",
+                imageUrl: "images/21.jpg"
+            },
+            {
+                pattern: "Los siguientes pasos son una explicacion grafica de la reduccion tipo 1",
+                imageUrl: "images/22.jpg"
+            },
+            {
+                pattern: "ahora que el hielo sale por la pepa dorada, y tienes una dorada en la aguja, debereas pasar la agua por la negra justo debajo",
+                imageUrl: "images/23.jpg"
+            },
+            {
+                pattern: "Ahora justo detras de la pepa donde quedo el hielo metras la aguja hacia el lado contrario que salio el hilo",
+                imageUrl: "images/24.jpg"
+            },
+            {
+                pattern: "Subes por la dorada siguiendo la direccion del hilo",
+                imageUrl: "images/25.jpg"
+            },
+            {
+                pattern: "ahora solo pon la aguaja en la dorada que pusiste antes.",
+                imageUrl: "images/26.jpg"
+            },
+            {
+                pattern: "D N M P M P D V",
+                imageUrl: "images/27.jpg"
+            },
+            {
+                pattern: "D V 2P 2M 2N",
+                imageUrl: "images/28.jpg"
+            },
+            {
+                pattern: "D 2N M 2P D V",
+                imageUrl: "images/29.jpg"
+            },
+            {
+                pattern: "2V 3P 3N",
+                imageUrl: "images/30.jpg"
+            },
+            {
+                pattern: "D 2N 3P D V",
+                imageUrl: "images/31.jpg"
+            },
+            {
+                pattern: "V D R 2P R N D",
+                imageUrl: "images/32.jpg"
+            },
+            {
+                pattern: "V N 5R D",
+                imageUrl: "images/33.jpg"
+            },
+            {
+                pattern: "V D 5R D",
+                imageUrl: "images/34.jpg"
+            },
+            {
+                pattern: "V 6R V",
+                imageUrl: "images/35.jpg"
+            },
+            {
+                pattern: "V D 5R D",
+                imageUrl: "images/36.jpg"
+            },
+            {
+                pattern: "V 2R P 3R V",
+                imageUrl: "images/37.jpg"
+            },
+            {
+                pattern: "V D 2R 2P R D",
+                imageUrl: "images/38.jpg"
+            },
+            {
+                pattern: "V R C 2P 2R V",
+                imageUrl: "images/39.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/40.jpg"
+            },
+            {
+                pattern: "D 2R 2P R D",
+                imageUrl: "images/41.jpg" 
+            },
+            {
+                pattern: "V R 3P 2R",
+                imageUrl: "images/42.jpg" 
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/43.jpg" 
+            },
+            {
+                pattern: "R 2P C R D",
+                imageUrl: "images/44.jpg" 
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/45.jpg" 
+            },
+            {
+                pattern: "R 3P R",
+                imageUrl: "images/46.jpg" 
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/47.jpg" 
+            },
+            {
+                pattern: "2P C R",
+                imageUrl: "images/48.jpg" 
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/49.jpg" 
+            },
+            {
+                pattern: "3P",
+                imageUrl: "images/50.jpg" 
+            }
+        ];
+
+        const leftSteps = [
+            {
+                pattern: "D N 4P N D V",
+                imageUrl: "images/L1.jpg" // Imagen para el primer paso de la cabeza
+            },
+            {
+                pattern: "2V D N 3P N D",
+                imageUrl: "images/L2.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/L3.jpg"
+            },
+            {
+                pattern: "2N 2P N D V D",
+                imageUrl: "images/L4.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/L5.jpg"
+            },
+            {
+                pattern: "2V D 4N",
+                imageUrl: "images/L6.jpg"
+            },
+            {
+                pattern: "Aqui haremos lo explicado en el paso anterior, son los mismos pasos, debes agregar una pepa D",
+                imageUrl: "images/L7.jpg"
+            },
+            {
+                pattern: "D 3N D 2V",
+                imageUrl: "images/L8.jpg"
+            },
+            {
+                pattern: "PONER UNA V Y PONER EL HILO EN ESA",
+                imageUrl: "images/L9.jpg"
+            },
+            {
+                pattern: "V D V D 2N D",
+                imageUrl: "images/L10.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/L11.jpg"
+            },
+            {
+                pattern: "D N D 3 V",
+                imageUrl: "images/L12.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/L13.jpg"
+            },
+            {
+                pattern: "3V 2D",
+                imageUrl: "images/L14.jpg"
+            },
+            {
+                pattern: "REDUCCION (Reducción Tipo 2)", 
+                imageUrl: "images/L15.jpg"
+            },
+            {
+                pattern: "D 3V",
+                imageUrl: "images/L16.jpg"
+            }
+        ];
+
+        let currentStepIndex = 0; // Para los pasos principales (rama derecha)
+        let currentLeftStepIndex = 0; // Para los pasos de la cabeza (rama izquierda)
+        let isNavigatingLeft = false; // Bandera para saber en qué rama estamos
+
+        const initialInstructions = document.getElementById('initial-instructions');
+        const leftBranchIntro = document.getElementById('left-branch-intro'); // Referencia al nuevo div
+        const stepDisplay = document.getElementById('step-display');
+        const stepImage = document.getElementById('step-image');
+        const patternDisplay = document.getElementById('pattern-display');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const leftButton = document.getElementById('left-button'); 
+
+        const reductionType2Modal = document.getElementById('reduction-type2-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const reductionType2Tooltip = document.getElementById('reduction-type2-tooltip');
+
+        /**
+         * Actualiza el contenido de la interfaz de usuario con el paso actual,
+         * dependiendo de la rama de navegación.
+         */
+        function updateUI() {
+            let currentSetOfSteps;
+            let currentIndex;
+            let displayStepNumber; // Para mostrar el número de paso correcto al usuario
+
+            // Controla la visibilidad de las instrucciones iniciales y la intro de la cabeza
+            initialInstructions.classList.add('hidden');
+            leftBranchIntro.classList.add('hidden');
+
+            if (isNavigatingLeft) {
+                currentSetOfSteps = leftSteps;
+                currentIndex = currentLeftStepIndex;
+                displayStepNumber = `Cabeza - Paso ${currentLeftStepIndex + 1}`;
+                // Mostrar la intro de la cabeza solo si estamos en el primer paso de la izquierda
+                if (currentLeftStepIndex === 0) {
+                    leftBranchIntro.classList.remove('hidden');
+                }
+            } else {
+                currentSetOfSteps = steps;
+                currentIndex = currentStepIndex;
+                displayStepNumber = `Paso ${currentStepIndex + 1}`;
+                // Mostrar las instrucciones iniciales solo si estamos en el primer paso principal
+                if (currentStepIndex === 0) {
+                    initialInstructions.classList.remove('hidden');
+                }
+            }
+
+            stepDisplay.textContent = displayStepNumber;
+            stepImage.src = currentSetOfSteps[currentIndex].imageUrl;
+            stepImage.alt = `Imagen del ${displayStepNumber}`;
+
+            const currentPatternText = currentSetOfSteps[currentIndex].pattern;
+            
+            // Lógica para Reducción Tipo 2 (Tooltip y Modal)
+            if (currentPatternText.includes("Reducción Tipo 2")) {
+                patternDisplay.innerHTML = currentPatternText.replace(
+                    "Reducción Tipo 2",
+                    "<span id='reduction-type2-link' class='text-indigo-600 font-bold cursor-pointer hover:underline'>Reducción Tipo 2</span>"
+                );
+                
+                const reductionLink = document.getElementById('reduction-type2-link');
+                if (reductionLink) {
+                    reductionLink.onclick = () => {
+                        reductionType2Modal.classList.remove('hidden');
+                        reductionType2Tooltip.classList.add('hidden'); 
+                    };
+
+                    reductionLink.onmouseover = () => {
+                        reductionType2Tooltip.classList.remove('hidden');
+                        reductionType2Tooltip.style.opacity = '0'; 
+                        reductionType2Tooltip.style.visibility = 'hidden'; 
+                        
+                        reductionType2Tooltip.offsetWidth; 
+
+                        const linkRect = reductionLink.getBoundingClientRect();
+                        const tooltipHeight = reductionType2Tooltip.offsetHeight;
+                        const tooltipWidth = reductionType2Tooltip.offsetWidth; 
+
+                        const spaceBelow = window.innerHeight - (linkRect.bottom + 10); 
+                        const spaceAbove = linkRect.top - 10; 
+
+                        let tooltipTop;
+                        let tooltipLeft;
+
+                        if (linkRect.top > window.innerHeight / 2 && spaceAbove >= tooltipHeight) {
+                            tooltipTop = linkRect.top + window.scrollY - tooltipHeight - 10; 
+                            reductionType2Tooltip.classList.remove('bottom');
+                            reductionType2Tooltip.classList.add('top');
+                        } else {
+                            tooltipTop = linkRect.bottom + window.scrollY + 10; 
+                            reductionType2Tooltip.classList.remove('top');
+                            reductionType2Tooltip.classList.add('bottom');
+                        }
+
+                        tooltipLeft = linkRect.left + (linkRect.width / 2) - (tooltipWidth / 2);
+                        
+                        const margin = 5; 
+                        if (tooltipLeft < margin) {
+                            tooltipLeft = margin;
+                        } else if (tooltipLeft + tooltipWidth > window.innerWidth - margin) {
+                            tooltipLeft = window.innerWidth - tooltipWidth - margin;
+                        }
+
+                        reductionType2Tooltip.style.left = `${tooltipLeft}px`;
+                        reductionType2Tooltip.style.top = `${tooltipTop}px`;
+
+                        reductionType2Tooltip.style.visibility = 'visible';
+                        reductionType2Tooltip.style.opacity = '1';
+                    };
+
+                    reductionLink.onmouseout = () => {
+                        reductionType2Tooltip.style.opacity = '0';
+                        setTimeout(() => {
+                            if (reductionType2Tooltip.style.opacity === '0') { 
+                                reductionType2Tooltip.classList.add('hidden');
+                                reductionType2Tooltip.style.visibility = 'hidden'; 
+                                reductionType2Tooltip.classList.remove('top');
+                                reductionType2Tooltip.classList.remove('bottom');
+                            }
+                        }, 200); 
+                    };
+                }
+            } else {
+                patternDisplay.textContent = currentPatternText;
+                reductionType2Tooltip.classList.add('hidden');
+                reductionType2Tooltip.style.opacity = '0';
+                reductionType2Tooltip.style.visibility = 'hidden'; 
+                reductionType2Tooltip.classList.remove('top');
+                reductionType2Tooltip.classList.remove('bottom');
+            }
+
+            // Botón ANTERIOR
+            if (isNavigatingLeft) {
+                prevButton.disabled = currentLeftStepIndex === 0;
+                prevButton.classList.toggle('opacity-50', currentLeftStepIndex === 0);
+                prevButton.classList.toggle('cursor-not-allowed', currentLeftStepIndex === 0);
+                prevButton.classList.toggle('hover:bg-gray-400', currentLeftStepIndex !== 0);
+                prevButton.classList.toggle('hover:scale-105', currentLeftStepIndex !== 0);
+            } else {
+                prevButton.disabled = currentStepIndex === 0;
+                prevButton.classList.toggle('opacity-50', currentStepIndex === 0);
+                prevButton.classList.toggle('cursor-not-allowed', currentStepIndex === 0);
+                prevButton.classList.toggle('hover:bg-gray-400', currentStepIndex !== 0);
+                prevButton.classList.toggle('hover:scale-105', currentStepIndex !== 0);
+            }
+
+            // Botón SIGUIENTE
+            if (isNavigatingLeft) {
+                nextButton.disabled = currentLeftStepIndex === leftSteps.length - 1;
+                nextButton.classList.toggle('opacity-50', currentLeftStepIndex === leftSteps.length - 1);
+                nextButton.classList.toggle('cursor-not-allowed', currentLeftStepIndex === leftSteps.length - 1);
+                nextButton.classList.toggle('hover:bg-indigo-700', currentLeftStepIndex !== leftSteps.length - 1);
+                nextButton.classList.toggle('hover:scale-105', currentLeftStepIndex !== leftSteps.length - 1);
+            } else {
+                nextButton.disabled = currentStepIndex === steps.length - 1;
+                nextButton.classList.toggle('opacity-50', currentStepIndex === steps.length - 1);
+                nextButton.classList.toggle('cursor-not-allowed', currentStepIndex === steps.length - 1);
+                nextButton.classList.toggle('hover:bg-indigo-700', currentStepIndex !== steps.length - 1);
+                nextButton.classList.toggle('hover:scale-105', currentStepIndex !== steps.length - 1);
+            }
+
+            // Botón INICIO / IZQ.
+            if (isNavigatingLeft && currentLeftStepIndex === 0) {
+                 leftButton.disabled = true;
+                 leftButton.classList.add('opacity-50', 'cursor-not-allowed');
+                 leftButton.classList.remove('hover:bg-red-700', 'hover:scale-105');
+                 leftButton.textContent = "Inicio / Izq."; 
+            } else if (!isNavigatingLeft && currentStepIndex === 0) {
+                 leftButton.disabled = false; 
+                 leftButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                 leftButton.classList.add('hover:bg-red-700', 'hover:scale-105');
+                 leftButton.textContent = "Ir a Cabeza"; // Cambiar texto para indicar a dónde va
+            } else { 
+                leftButton.disabled = false;
+                leftButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                leftButton.classList.add('hover:bg-red-700', 'hover:scale-105');
+                leftButton.textContent = "Inicio / Derecha"; 
+            }
+        }
+
+        // --- LISTENERS DE BOTONES ---
+
+        nextButton.addEventListener('click', () => {
+            if (isNavigatingLeft) {
+                if (currentLeftStepIndex < leftSteps.length - 1) {
+                    currentLeftStepIndex++;
+                }
+            } else {
+                if (currentStepIndex < steps.length - 1) {
+                    currentStepIndex++;
+                }
+            }
+            updateUI();
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (isNavigatingLeft) {
+                if (currentLeftStepIndex > 0) {
+                    currentLeftStepIndex--;
+                }
+            } else {
+                if (currentStepIndex > 0) {
+                    currentStepIndex--;
+                }
+            }
+            updateUI();
+        });
+
+        leftButton.addEventListener('click', () => {
+            if (isNavigatingLeft) {
+                isNavigatingLeft = false;
+                currentStepIndex = 0; 
+            } else if (currentStepIndex === 0) {
+
+                isNavigatingLeft = true;
+                currentLeftStepIndex = 0; 
+            } else {
+                currentStepIndex = 0; 
+            }
+            updateUI();
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            reductionType2Modal.classList.add('hidden');
+        });
+
+        reductionType2Modal.addEventListener('click', (event) => {
+            if (event.target === reductionType2Modal) { 
+                reductionType2Modal.classList.add('hidden');
+            }
+        });
+
+        window.onload = updateUI;
+    </script>
+</body>
+</html>
