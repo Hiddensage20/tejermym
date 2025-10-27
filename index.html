@@ -10,19 +10,20 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; 
+            background-color: #f3f4f6; /* Fondo gris claro */
         }
+        /* Estilos para el modal/popup */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); 
+            background-color: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 999; 
+            z-index: 999;
         }
         .modal-content {
             background-color: white;
@@ -33,8 +34,8 @@
             width: 90%;
             position: relative;
             z-index: 1000;
-            max-height: 80vh; 
-            overflow-y: auto; 
+            max-height: 80vh;
+            overflow-y: auto;
         }
         .close-button {
             position: absolute;
@@ -43,12 +44,13 @@
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            color: #4a5568; 
+            color: #4a5568;
         }
         .close-button:hover {
-            color: #2d3748; 
+            color: #2d3748;
         }
 
+        /* Estilos para el tooltip */
         .tooltip-box {
             position: absolute;
             background-color: #ffffff;
@@ -59,10 +61,10 @@
             max-width: 280px;
             text-align: left;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 99; 
-            pointer-events: none; 
-            opacity: 0; 
-            transition: opacity 0.2s ease-in-out; 
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
             border: 1px solid #e2e8f0;
         }
 
@@ -74,7 +76,7 @@
             transform: translateX(-50%);
             border-width: 8px;
             border-style: solid;
-            border-color: transparent transparent #ffffff transparent; 
+            border-color: transparent transparent #ffffff transparent;
         }
 
         .tooltip-box.top::before {
@@ -85,7 +87,7 @@
             transform: translateX(-50%);
             border-width: 8px;
             border-style: solid;
-            border-color: #ffffff transparent transparent transparent; 
+            border-color: #ffffff transparent transparent transparent;
         }
     </style>
 </head>
@@ -138,10 +140,12 @@
         <div id="pattern-display" class="text-xl text-gray-800 mb-8 px-4 leading-relaxed">
             Prepara tu espacio de trabajo.
         </div>
-
+        
+        <select id="step-selector" class="mb-8 p-2 border border-gray-300 rounded-lg text-lg text-center w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </select>
         <div class="flex justify-center space-x-2 w-full mt-auto py-4">
             <button id="left-button" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
-                Inicio / Izq.
+                Ir a Cabeza
             </button>
             <button id="prev-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
                 Anterior
@@ -236,8 +240,8 @@
                 imageUrl: "images/16.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
-                imageUrl: "images/17.jpg" 
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/17.jpg"
             },
             {
                 pattern: "N M P M P M N V",
@@ -324,55 +328,56 @@
                 imageUrl: "images/39.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
+                pattern: "REDUCCION (Reducción Tipo 2)",
                 imageUrl: "images/40.jpg"
             },
             {
                 pattern: "D 2R 2P R D",
-                imageUrl: "images/41.jpg" 
+                imageUrl: "images/41.jpg"
             },
             {
                 pattern: "V R 3P 2R",
-                imageUrl: "images/42.jpg" 
+                imageUrl: "images/42.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
-                imageUrl: "images/43.jpg" 
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/43.jpg"
             },
             {
                 pattern: "R 2P C R D",
-                imageUrl: "images/44.jpg" 
+                imageUrl: "images/44.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
-                imageUrl: "images/45.jpg" 
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/45.jpg"
             },
             {
                 pattern: "R 3P R",
-                imageUrl: "images/46.jpg" 
+                imageUrl: "images/46.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
-                imageUrl: "images/47.jpg" 
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/47.jpg"
             },
             {
                 pattern: "2P C R",
-                imageUrl: "images/48.jpg" 
+                imageUrl: "images/48.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
-                imageUrl: "images/49.jpg" 
+                pattern: "REDUCCION (Reducción Tipo 2)",
+                imageUrl: "images/49.jpg"
             },
             {
                 pattern: "3P",
-                imageUrl: "images/50.jpg" 
+                imageUrl: "images/50.jpg"
             }
         ];
 
+        // --- NUEVOS PASOS PARA LA RAMA IZQUIERDA (CABEZA) ---
         const leftSteps = [
             {
                 pattern: "D N 4P N D V",
-                imageUrl: "images/L1.jpg" // Imagen para el primer paso de la cabeza
+                imageUrl: "images/L1.jpg"
             },
             {
                 pattern: "2V D N 3P N D",
@@ -411,7 +416,7 @@
                 imageUrl: "images/L10.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
+                pattern: "REDUCCION (Reducción Tipo 2)",
                 imageUrl: "images/L11.jpg"
             },
             {
@@ -419,7 +424,7 @@
                 imageUrl: "images/L12.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
+                pattern: "REDUCCION (Reducción Tipo 2)",
                 imageUrl: "images/L13.jpg"
             },
             {
@@ -427,7 +432,7 @@
                 imageUrl: "images/L14.jpg"
             },
             {
-                pattern: "REDUCCION (Reducción Tipo 2)", 
+                pattern: "REDUCCION (Reducción Tipo 2)",
                 imageUrl: "images/L15.jpg"
             },
             {
@@ -441,17 +446,82 @@
         let isNavigatingLeft = false; // Bandera para saber en qué rama estamos
 
         const initialInstructions = document.getElementById('initial-instructions');
-        const leftBranchIntro = document.getElementById('left-branch-intro'); // Referencia al nuevo div
+        const leftBranchIntro = document.getElementById('left-branch-intro');
         const stepDisplay = document.getElementById('step-display');
         const stepImage = document.getElementById('step-image');
         const patternDisplay = document.getElementById('pattern-display');
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
-        const leftButton = document.getElementById('left-button'); 
+        const leftButton = document.getElementById('left-button');
+        const stepSelector = document.getElementById('step-selector'); // NUEVA REFERENCIA
 
         const reductionType2Modal = document.getElementById('reduction-type2-modal');
         const closeModalButton = document.getElementById('close-modal-button');
         const reductionType2Tooltip = document.getElementById('reduction-type2-tooltip');
+
+        /**
+         * Genera las opciones del menú desplegable con todos los pasos disponibles.
+         */
+        function populateStepSelector() {
+            stepSelector.innerHTML = ''; // Limpiar opciones existentes
+
+            // 1. Opciones de la RAMA IZQUIERDA (Cabeza)
+            for (let i = 0; i < leftSteps.length; i++) {
+                const option = document.createElement('option');
+                // Valor único para identificar la rama y el índice (ej: L_0, L_1, ...)
+                option.value = `L_${i}`;
+                option.textContent = `Cabeza - Paso ${i + 1}`;
+                stepSelector.appendChild(option);
+            }
+            
+            // 2. Separador visual
+            const separator = document.createElement('option');
+            separator.value = 'SEPARATOR';
+            separator.textContent = '------------------';
+            separator.disabled = true;
+            stepSelector.appendChild(separator);
+
+            // 3. Opciones de la RAMA DERECHA (Principal/Cuerpo)
+            for (let i = 0; i < steps.length; i++) {
+                const option = document.createElement('option');
+                // Valor único para identificar la rama y el índice (ej: D_0, D_1, ...)
+                option.value = `D_${i}`;
+                option.textContent = `Paso ${i + 1}`;
+                stepSelector.appendChild(option);
+            }
+        }
+        
+        /**
+         * Asigna el paso actual al menú desplegable.
+         */
+        function selectCurrentStep() {
+            let value;
+            if (isNavigatingLeft) {
+                value = `L_${currentLeftStepIndex}`;
+            } else {
+                value = `D_${currentStepIndex}`;
+            }
+            stepSelector.value = value;
+        }
+
+        /**
+         * Maneja el cambio de paso desde el menú desplegable.
+         */
+        stepSelector.addEventListener('change', () => {
+            const selectedValue = stepSelector.value;
+            const parts = selectedValue.split('_'); // 'L_5' -> ['L', '5']
+            const branch = parts[0]; // 'L' o 'D'
+            const index = parseInt(parts[1], 10); // 5
+
+            if (branch === 'L') {
+                isNavigatingLeft = true;
+                currentLeftStepIndex = index;
+            } else if (branch === 'D') {
+                isNavigatingLeft = false;
+                currentStepIndex = index;
+            }
+            updateUI(); // Llamar a updateUI para reflejar el cambio
+        });
 
         /**
          * Actualiza el contenido de la interfaz de usuario con el paso actual,
@@ -460,9 +530,8 @@
         function updateUI() {
             let currentSetOfSteps;
             let currentIndex;
-            let displayStepNumber; // Para mostrar el número de paso correcto al usuario
+            let displayStepNumber;
 
-            // Controla la visibilidad de las instrucciones iniciales y la intro de la cabeza
             initialInstructions.classList.add('hidden');
             leftBranchIntro.classList.add('hidden');
 
@@ -470,7 +539,6 @@
                 currentSetOfSteps = leftSteps;
                 currentIndex = currentLeftStepIndex;
                 displayStepNumber = `Cabeza - Paso ${currentLeftStepIndex + 1}`;
-                // Mostrar la intro de la cabeza solo si estamos en el primer paso de la izquierda
                 if (currentLeftStepIndex === 0) {
                     leftBranchIntro.classList.remove('hidden');
                 }
@@ -478,7 +546,6 @@
                 currentSetOfSteps = steps;
                 currentIndex = currentStepIndex;
                 displayStepNumber = `Paso ${currentStepIndex + 1}`;
-                // Mostrar las instrucciones iniciales solo si estamos en el primer paso principal
                 if (currentStepIndex === 0) {
                     initialInstructions.classList.remove('hidden');
                 }
@@ -568,52 +635,42 @@
                 reductionType2Tooltip.classList.remove('bottom');
             }
 
+            // Seleccionar el paso actual en el menú desplegable
+            selectCurrentStep();
+
+            // Lógica para deshabilitar y aplicar estilos a los botones
             // Botón ANTERIOR
-            if (isNavigatingLeft) {
-                prevButton.disabled = currentLeftStepIndex === 0;
-                prevButton.classList.toggle('opacity-50', currentLeftStepIndex === 0);
-                prevButton.classList.toggle('cursor-not-allowed', currentLeftStepIndex === 0);
-                prevButton.classList.toggle('hover:bg-gray-400', currentLeftStepIndex !== 0);
-                prevButton.classList.toggle('hover:scale-105', currentLeftStepIndex !== 0);
-            } else {
-                prevButton.disabled = currentStepIndex === 0;
-                prevButton.classList.toggle('opacity-50', currentStepIndex === 0);
-                prevButton.classList.toggle('cursor-not-allowed', currentStepIndex === 0);
-                prevButton.classList.toggle('hover:bg-gray-400', currentStepIndex !== 0);
-                prevButton.classList.toggle('hover:scale-105', currentStepIndex !== 0);
-            }
+            const isPrevDisabled = isNavigatingLeft ? (currentLeftStepIndex === 0) : (currentStepIndex === 0);
+            prevButton.disabled = isPrevDisabled;
+            prevButton.classList.toggle('opacity-50', isPrevDisabled);
+            prevButton.classList.toggle('cursor-not-allowed', isPrevDisabled);
+            prevButton.classList.toggle('hover:bg-gray-400', !isPrevDisabled);
+            prevButton.classList.toggle('hover:scale-105', !isPrevDisabled);
 
             // Botón SIGUIENTE
-            if (isNavigatingLeft) {
-                nextButton.disabled = currentLeftStepIndex === leftSteps.length - 1;
-                nextButton.classList.toggle('opacity-50', currentLeftStepIndex === leftSteps.length - 1);
-                nextButton.classList.toggle('cursor-not-allowed', currentLeftStepIndex === leftSteps.length - 1);
-                nextButton.classList.toggle('hover:bg-indigo-700', currentLeftStepIndex !== leftSteps.length - 1);
-                nextButton.classList.toggle('hover:scale-105', currentLeftStepIndex !== leftSteps.length - 1);
-            } else {
-                nextButton.disabled = currentStepIndex === steps.length - 1;
-                nextButton.classList.toggle('opacity-50', currentStepIndex === steps.length - 1);
-                nextButton.classList.toggle('cursor-not-allowed', currentStepIndex === steps.length - 1);
-                nextButton.classList.toggle('hover:bg-indigo-700', currentStepIndex !== steps.length - 1);
-                nextButton.classList.toggle('hover:scale-105', currentStepIndex !== steps.length - 1);
-            }
+            const isNextDisabled = isNavigatingLeft ? (currentLeftStepIndex === leftSteps.length - 1) : (currentStepIndex === steps.length - 1);
+            nextButton.disabled = isNextDisabled;
+            nextButton.classList.toggle('opacity-50', isNextDisabled);
+            nextButton.classList.toggle('cursor-not-allowed', isNextDisabled);
+            nextButton.classList.toggle('hover:bg-indigo-700', !isNextDisabled);
+            nextButton.classList.toggle('hover:scale-105', !isNextDisabled);
 
             // Botón INICIO / IZQ.
-            if (isNavigatingLeft && currentLeftStepIndex === 0) {
-                 leftButton.disabled = true;
-                 leftButton.classList.add('opacity-50', 'cursor-not-allowed');
-                 leftButton.classList.remove('hover:bg-red-700', 'hover:scale-105');
-                 leftButton.textContent = "Inicio / Izq."; 
-            } else if (!isNavigatingLeft && currentStepIndex === 0) {
-                 leftButton.disabled = false; 
+            if (isNavigatingLeft) {
+                 leftButton.disabled = false;
                  leftButton.classList.remove('opacity-50', 'cursor-not-allowed');
                  leftButton.classList.add('hover:bg-red-700', 'hover:scale-105');
-                 leftButton.textContent = "Ir a Cabeza"; // Cambiar texto para indicar a dónde va
+                 leftButton.textContent = "Inicio / Derecha"; // Volver al Paso 1 principal
+            } else if (currentStepIndex === 0) {
+                 leftButton.disabled = false;
+                 leftButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                 leftButton.classList.add('hover:bg-red-700', 'hover:scale-105');
+                 leftButton.textContent = "Ir a Cabeza"; // Ir a la rama izquierda
             } else { 
                 leftButton.disabled = false;
                 leftButton.classList.remove('opacity-50', 'cursor-not-allowed');
                 leftButton.classList.add('hover:bg-red-700', 'hover:scale-105');
-                leftButton.textContent = "Inicio / Derecha"; 
+                leftButton.textContent = "Inicio / Derecha"; // Volver al Paso 1 principal
             }
         }
 
@@ -647,13 +704,16 @@
 
         leftButton.addEventListener('click', () => {
             if (isNavigatingLeft) {
+                // Si estamos en la rama izquierda, volvemos al Paso 1 principal.
                 isNavigatingLeft = false;
-                currentStepIndex = 0; 
+                currentStepIndex = 0;
             } else if (currentStepIndex === 0) {
-
+                // Si estamos en el Paso 1 principal, vamos a la rama izquierda.
                 isNavigatingLeft = true;
-                currentLeftStepIndex = 0; 
+                currentLeftStepIndex = 0;
             } else {
+                // Si estamos a la derecha del Paso 1, volvemos al Paso 1 principal.
+                isNavigatingLeft = false; // (Ya es false, pero por claridad)
                 currentStepIndex = 0; 
             }
             updateUI();
@@ -669,7 +729,11 @@
             }
         });
 
-        window.onload = updateUI;
+        // Al cargar la ventana, primero poblar el selector y luego inicializar la UI
+        window.onload = () => {
+            populateStepSelector();
+            updateUI();
+        };
     </script>
 </body>
 </html>
